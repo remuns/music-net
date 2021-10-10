@@ -28,7 +28,7 @@ namespace REMuns.Music.Intervals
     /// Represents a non-perfectable simple interval.
     /// </summary>
     public sealed record NPSimpleInterval(
-        PIntervalQuality Quality, NPSimpleIntervalNumberName NumberName)
+        NPIntervalQuality Quality, NPSimpleIntervalNumberName NumberName)
     : SimpleInterval
     {
         /// <summary>

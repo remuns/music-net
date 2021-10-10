@@ -12,6 +12,19 @@ namespace REMuns.Music.Intervals
         PIntervalQuality Quality, PSimpleIntervalNumberName NumberName)
     : SimpleInterval
     {
+        private protected override IntervalQuality InternalQuality => Quality;
+
+        /// <inheritdoc cref="SimpleInterval.Quality"/>
+        public new PIntervalQuality Quality
+        {
+            get => _quality;
+            init => _quality = value;
+        }
+        private readonly PIntervalQuality _quality = Quality;
+
+        /// <inheritdoc cref="SimpleInterval.Number"/>
+        public override int Number => (int)NumberName;
+
         /// <summary>
         /// The name of the number of this perfectable simple interval.
         /// </summary>
@@ -31,6 +44,19 @@ namespace REMuns.Music.Intervals
         NPIntervalQuality Quality, NPSimpleIntervalNumberName NumberName)
     : SimpleInterval
     {
+        private protected override IntervalQuality InternalQuality => Quality;
+
+        /// <inheritdoc cref="SimpleInterval.Quality"/>
+        public new NPIntervalQuality Quality
+        {
+            get => _quality;
+            init => _quality = value;
+        }
+        private readonly NPIntervalQuality _quality = Quality;
+
+        /// <inheritdoc cref="SimpleInterval.Number"/>
+        public override int Number => (int)NumberName;
+
         /// <summary>
         /// The name of the number of this non-perfectable simple interval.
         /// </summary>
@@ -48,6 +74,22 @@ namespace REMuns.Music.Intervals
     /// </summary>
     public abstract record SimpleInterval
     {
+        /// <summary>
+        /// The number of this simple interval.
+        /// </summary>
+        public abstract int Number { get; }
+
+        /// <summary>
+        /// The quality of this simple interval.
+        /// </summary>
+        public IntervalQuality Quality => InternalQuality;
+
+        /// <summary>
+        /// Represents the quality of an interval internally, so that subrecords can store
+        /// qualities of the correct type.
+        /// </summary>
+        private protected abstract IntervalQuality InternalQuality { get; }
+
         /// <summary>
         /// Creates an object that can build a diminished simple interval with the
         /// predefined degree.

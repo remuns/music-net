@@ -25,5 +25,25 @@ namespace REMuns.Music.Internal
             }
             return value;
         }
+
+        public static int EnsureArgNonNegative(int value, string argName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentException(
+                    $"expected non-negative value for argument \"{argName}\"");
+            }
+            return value;
+        }
+
+        public static int EnsurePropNonNegative(int value, string propName)
+        {
+            if (value <= 0)
+            {
+                throw new InvalidOperationException(
+                    $"expected non-negative value for property \"{propName}\"");
+            }
+            return value;
+        }
     }
 }

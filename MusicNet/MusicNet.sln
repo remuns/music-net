@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicNet", "MusicNet\MusicNet.csproj", "{76C2DE27-71AA-4957-A21A-B990163EA783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicNetTest", "MusicNetTest\MusicNetTest.csproj", "{946E302B-0798-48BE-9CF6-4B2328355749}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76C2DE27-71AA-4957-A21A-B990163EA783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C2DE27-71AA-4957-A21A-B990163EA783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C2DE27-71AA-4957-A21A-B990163EA783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C2DE27-71AA-4957-A21A-B990163EA783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946E302B-0798-48BE-9CF6-4B2328355749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946E302B-0798-48BE-9CF6-4B2328355749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946E302B-0798-48BE-9CF6-4B2328355749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946E302B-0798-48BE-9CF6-4B2328355749}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C83776C0-933B-42BB-AFDB-C25625ADE93F}
+	EndGlobalSection
+EndGlobal

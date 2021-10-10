@@ -9,18 +9,18 @@ namespace REMuns.Music.Intervals
     /// Represents a perfectable simple interval.
     /// </summary>
     public sealed record PSimpleInterval(
-        PIntervalQuality Quality, SimplePIntervalNumberName NumberName)
+        PIntervalQuality Quality, PSimpleIntervalNumberName NumberName)
     : SimpleInterval
     {
         /// <summary>
         /// The name of the number of this perfectable simple interval.
         /// </summary>
-        public SimplePIntervalNumberName NumberName
+        public PSimpleIntervalNumberName NumberName
         {
             get => _numberName;
             init => _numberName = EnumChecks.EnsurePropNamed(value, nameof(NumberName));
         }
-        private readonly SimplePIntervalNumberName _numberName
+        private readonly PSimpleIntervalNumberName _numberName
             = EnumChecks.EnsureArgNamed(NumberName, nameof(NumberName));
     }
 
@@ -28,18 +28,18 @@ namespace REMuns.Music.Intervals
     /// Represents a non-perfectable simple interval.
     /// </summary>
     public sealed record NPSimpleInterval(
-        PIntervalQuality Quality, SimpleNPIntervalNumberName NumberName)
+        PIntervalQuality Quality, NPSimpleIntervalNumberName NumberName)
     : SimpleInterval
     {
         /// <summary>
         /// The name of the number of this non-perfectable simple interval.
         /// </summary>
-        public SimpleNPIntervalNumberName NumberName
+        public NPSimpleIntervalNumberName NumberName
         {
             get => _numberName;
             init => _numberName = EnumChecks.EnsurePropNamed(value, nameof(NumberName));
         }
-        private readonly SimpleNPIntervalNumberName _numberName
+        private readonly NPSimpleIntervalNumberName _numberName
             = EnumChecks.EnsureArgNamed(NumberName, nameof(NumberName));
     }
 

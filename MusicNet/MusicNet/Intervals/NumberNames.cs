@@ -7,7 +7,7 @@ namespace REMuns.Music.Intervals
     /// <summary>
     /// Represents a name of the number of a simple perfectable interval.
     /// </summary>
-    public enum SimplePIntervalNumberName
+    public enum PSimpleIntervalNumberName
     {
         /// <summary>
         /// Represents a unison.
@@ -28,7 +28,7 @@ namespace REMuns.Music.Intervals
     /// <summary>
     /// Represents a name of the number of a simple non-perfectable interval.
     /// </summary>
-    public enum SimpleNPIntervalNumberName
+    public enum NPSimpleIntervalNumberName
     {
         /// <summary>
         /// Represents a second.
@@ -62,11 +62,11 @@ namespace REMuns.Music.Intervals
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public static int Number(this SimplePIntervalNumberName n) => n switch
+        public static int Number(this PSimpleIntervalNumberName n) => n switch
         {
-            SimplePIntervalNumberName.Unison => 1,
-            SimplePIntervalNumberName.Fourth => 4,
-            SimplePIntervalNumberName.Fifth => 5,
+            PSimpleIntervalNumberName.Unison => 1,
+            PSimpleIntervalNumberName.Fourth => 4,
+            PSimpleIntervalNumberName.Fifth => 5,
         };
 
         /// <summary>
@@ -74,12 +74,12 @@ namespace REMuns.Music.Intervals
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public static int Number(this SimpleNPIntervalNumberName n) => n switch
+        public static int Number(this NPSimpleIntervalNumberName n) => n switch
         {
-            SimpleNPIntervalNumberName.Second => 2,
-            SimpleNPIntervalNumberName.Third => 3,
-            SimpleNPIntervalNumberName.Sixth => 6,
-            SimpleNPIntervalNumberName.Seventh => 7,
+            NPSimpleIntervalNumberName.Second => 2,
+            NPSimpleIntervalNumberName.Third => 3,
+            NPSimpleIntervalNumberName.Sixth => 6,
+            NPSimpleIntervalNumberName.Seventh => 7,
         };
 #pragma warning restore CS8524 
     }

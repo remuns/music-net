@@ -54,7 +54,7 @@ namespace REMuns.Music.Intervals
         /// </summary>
         /// <param name="Degree"></param>
         /// <returns></returns>
-        public static DiminishedSimpleIntervalBuilder Diminished(int Degree)
+        public static DiminishedSimpleIntervalBuilder Diminished(int Degree = 1)
             => new() { Degree = Degree };
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace REMuns.Music.Intervals
         /// </summary>
         /// <param name="Degree"></param>
         /// <returns></returns>
-        public static AugmentedSimpleIntervalBuilder Augmented(int Degree)
+        public static AugmentedSimpleIntervalBuilder Augmented(int Degree = 1)
             => new() { Degree = Degree };
     }
 }

@@ -11,7 +11,7 @@ namespace REMuns.Music.Internal
             if (value <= 0)
             {
                 throw new ArgumentException(
-                    $"expected positive value for argument {argName}");
+                    $"expected positive value for argument \"{argName}\"");
             }
             return value;
         }
@@ -21,7 +21,7 @@ namespace REMuns.Music.Internal
             if (value <= 0)
             {
                 throw new InvalidOperationException(
-                    $"expected positive value for property {propName}");
+                    $"expected positive value for property \"{propName}\"");
             }
             return value;
         }

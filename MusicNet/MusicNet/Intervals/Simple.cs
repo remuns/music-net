@@ -44,7 +44,7 @@ namespace REMuns.Music.Intervals
     }
 
     /// <summary>
-    /// Represents a simple interval (less than an octave in number).
+    /// Represents a simple musical interval (less than an octave in number).
     /// </summary>
     public abstract record SimpleInterval;
 }

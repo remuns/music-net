@@ -46,7 +46,7 @@ namespace REMuns.Music.Intervals
     /// <summary>
     /// Represents the quality of a perfectable interval.
     /// </summary>
-    public abstract record PIntervalQuality;
+    public abstract record PIntervalQuality : IntervalQuality;
     #endregion
 
     #region NPIntervals
@@ -95,7 +95,7 @@ namespace REMuns.Music.Intervals
     /// <summary>
     /// Represents the quality of a non-perfectable interval.
     /// </summary>
-    public abstract record NPIntervalQuality;
+    public abstract record NPIntervalQuality : IntervalQuality;
     #endregion
 
     /// <summary>

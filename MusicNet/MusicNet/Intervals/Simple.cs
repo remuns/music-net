@@ -128,5 +128,25 @@ namespace REMuns.Music.Intervals
         /// <returns></returns>
         public static AugmentedSimpleIntervalBuilder Augmented(int Degree = 1)
             => new() { Degree = Degree };
+
+        /// <summary>
+        /// Finds the simple interval separating the two simple intervals, ignoring octaves.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static SimpleInterval operator +(SimpleInterval lhs, SimpleInterval rhs)
+            => CircleOfFifths.SimpleIntervalFromIntValue(
+                CircleOfFifths.IntValue(lhs) + CircleOfFifths.IntValue(rhs));
+
+        /// <summary>
+        /// Finds the simple interval separating the two simple intervals, ignoring octaves.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static SimpleInterval operator -(SimpleInterval lhs, SimpleInterval rhs)
+            => CircleOfFifths.SimpleIntervalFromIntValue(
+                CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
     }
 }

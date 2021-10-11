@@ -20,7 +20,7 @@ namespace REMuns.Music
         public static int CompareSimpleIntervals(SimpleInterval lhs, SimpleInterval rhs)
             => IntValue(lhs).CompareTo(IntValue(rhs));
 
-        private static int IntValue(SimpleInterval interval)
+        internal static int IntValue(SimpleInterval interval)
         {
             // Get the distance of the interval from perfect or major along the circle of
             // fifths to get the value
@@ -73,6 +73,70 @@ namespace REMuns.Music
             }
             
             return numberIntValue + qualityIntValue * 7;
+        }
+
+        internal static SimpleInterval SimpleIntervalFromIntValue(int value)
+        {
+            // Get the number of a perfect or major interval that will share the number
+            var numberIntValue = value % 7;
+
+            // Need to ensure this value is positive
+            if (numberIntValue < 0) numberIntValue += 7;
+
+            // Need to treat a perfect fourth as negative
+            if (numberIntValue == 6) numberIntValue = -1;
+
+            // Need to treat the range [-1, 5] rather than the typical range of [0, 6]
+            // used for modulo 7 so that a perfect fourth is negative, but perfect is always
+            // treated as 0
+            value++;
+
+            // Need to ensure that the range [-7, -1] yields -1 instead of the range [-6, 0]
+            // yielding 0, and so on and so forth
+            var qualityIntValue = value < 0 ? (value + 1) / 7 - 1 : value / 7;
+
+            switch (numberIntValue)
+            {
+                case -1 or 0 or 1:
+#pragma warning disable CS8509 // Already ensured the integer is one of these values
+                    var pNumberName = numberIntValue switch
+                    {
+                        -1 => PSimpleIntervalNumberName.Fourth,
+                        0 => PSimpleIntervalNumberName.Unison,
+                        1 => PSimpleIntervalNumberName.Fifth,
+                    };
+#pragma warning restore CS8509
+
+                    PIntervalQuality pQuality = qualityIntValue switch
+                    {
+                        < 0 => new DiminishedPIntervalQuality(-qualityIntValue),
+                        0 => new PerfectIntervalQuality(),
+                        > 0 => new AugmentedPIntervalQuality(qualityIntValue),
+                    };
+
+                    return new PSimpleInterval(pQuality, pNumberName);
+
+                default:
+#pragma warning disable CS8509 // Integer must be between -1 and 5, inclusive
+                    var npNumberName = numberIntValue switch
+                    {
+                        2 => NPSimpleIntervalNumberName.Second,
+                        3 => NPSimpleIntervalNumberName.Sixth,
+                        4 => NPSimpleIntervalNumberName.Third,
+                        5 => NPSimpleIntervalNumberName.Seventh,
+                    };
+#pragma warning restore CS8509
+
+                    NPIntervalQuality npQuality = qualityIntValue switch
+                    {
+                        -1 => new MinorIntervalQuality(),
+                        0 => new MajorIntervalQuality(),
+                        > 0 => new AugmentedNPIntervalQuality(qualityIntValue),
+                        < 0 => new DiminishedNPIntervalQuality(-qualityIntValue - 1),
+                    };
+
+                    return new NPSimpleInterval(npQuality, npNumberName);
+            }
         }
     }
 }

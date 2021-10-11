@@ -35,12 +35,14 @@ namespace REMuns.Music
                         AugmentedPIntervalQuality(var degree) => degree,
                     };
 
+#pragma warning disable CS8524 // The SimpleInterval type doesn't allow unnamed enum values
                     numberIntValue = number switch
                     {
                         PSimpleIntervalNumberName.Unison => 0,
                         PSimpleIntervalNumberName.Fourth => -1,
                         PSimpleIntervalNumberName.Fifth => 1,
                     };
+#pragma warning restore CS8524
 
                     break;
 
@@ -53,6 +55,7 @@ namespace REMuns.Music
                         AugmentedNPIntervalQuality(var degree) => degree,
                     };
 
+#pragma warning disable CS8524 // The SimpleInterval type doesn't allow unnamed enum values
                     numberIntValue = number switch
                     {
                         NPSimpleIntervalNumberName.Second => 2,
@@ -60,6 +63,7 @@ namespace REMuns.Music
                         NPSimpleIntervalNumberName.Sixth => 3,
                         NPSimpleIntervalNumberName.Seventh => 5,
                     };
+#pragma warning restore CS8524
 
                     break;
 

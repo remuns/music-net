@@ -60,5 +60,25 @@ namespace REMuns.Music.Test.Intervals
                 SimpleInterval.Diminished().Fifth(),
                 SimpleInterval.Minor().Second() - SimpleInterval.Perfect().Fifth());
         }
+
+        /// <summary>
+        /// Tests inversion of a simple interval.
+        /// </summary>
+        [TestMethod]
+        public void TestInversion()
+        {
+            Assert.AreEqual(
+                SimpleInterval.Diminished().Fifth(),
+                SimpleInterval.Augmented().Fourth().Inverted());
+
+            Assert.AreEqual(
+                SimpleInterval.Minor().Sixth(),
+                SimpleInterval.Major().Third().Inverted());
+
+            // Should be its own inversion
+            Assert.AreEqual(
+                SimpleInterval.Perfect().Unison(),
+                SimpleInterval.Perfect().Unison().Inverted());
+        }
     }
 }

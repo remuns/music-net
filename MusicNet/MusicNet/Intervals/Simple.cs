@@ -148,5 +148,12 @@ namespace REMuns.Music.Intervals
         public static SimpleInterval operator -(SimpleInterval lhs, SimpleInterval rhs)
             => CircleOfFifths.SimpleIntervalFromIntValue(
                 CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
+
+        /// <summary>
+        /// Gets an interval equal to this one, but inverted.
+        /// </summary>
+        /// <returns></returns>
+        public SimpleInterval Inverted()
+            => CircleOfFifths.SimpleIntervalFromIntValue(-CircleOfFifths.IntValue(this));
     }
 }

@@ -31,5 +31,19 @@ namespace REMuns.Music.Intervals
             init => _octave = IntChecks.EnsurePropNonNegative(value, nameof(Octave));
         }
         private readonly int _octave = IntChecks.EnsureArgNonNegative(Octave, nameof(Octave));
+
+        /// <summary>
+        /// Gets an <see cref="Interval"/> equivalent to this one with the specified number
+        /// of octaves added.
+        /// </summary>
+        /// <param name="octaves"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">
+        /// The result of the addition would yield a negative number of octaves.
+        /// </exception>
+        public Interval WithOctavesAdded(int octaves)
+        {
+            return this with { Octave = Octave + octaves };
+        }
     }
 }

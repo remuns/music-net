@@ -36,6 +36,10 @@ namespace REMuns.Music.Test.Intervals
             Assert.AreEqual(
                 SimpleInterval.Augmented().Fifth(),
                 SimpleInterval.Major().Third() + SimpleInterval.Major().Third());
+
+            Assert.AreEqual(
+                SimpleInterval.Diminished().Fourth(),
+                SimpleInterval.Diminished().Third() + SimpleInterval.Major().Second());
         }
 
         /// <summary>

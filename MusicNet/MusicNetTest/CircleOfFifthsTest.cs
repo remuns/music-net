@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace REMuns.Music.Test
 {
+    /// <summary>
+    /// Tests for the <see cref="CircleOfFifths"/> class.
+    /// </summary>
     [TestClass]
     public class CircleOfFifthsTest
     {

@@ -14,6 +14,9 @@ namespace REMuns.Music.Test.Intervals
     [TestClass]
     public class IntervalTest
     {
+        /// <summary>
+        /// Tests the <see cref="Interval.WithOctavesAdded(int)"/> method.
+        /// </summary>
         [TestMethod]
         public void TestWithOctavesAdded()
         {

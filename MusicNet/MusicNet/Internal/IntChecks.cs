@@ -28,7 +28,7 @@ namespace REMuns.Music.Internal
 
         public static int EnsureArgNonNegative(int value, string argName)
         {
-            if (value <= 0)
+            if (value < 0)
             {
                 throw new ArgumentException(
                     $"expected non-negative value for argument \"{argName}\"");
@@ -38,7 +38,7 @@ namespace REMuns.Music.Internal
 
         public static int EnsurePropNonNegative(int value, string propName)
         {
-            if (value <= 0)
+            if (value < 0)
             {
                 throw new InvalidOperationException(
                     $"expected non-negative value for property \"{propName}\"");

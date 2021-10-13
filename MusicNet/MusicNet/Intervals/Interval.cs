@@ -14,21 +14,21 @@ namespace REMuns.Music.Intervals
         /// Gets whether or not this interval represents a simple interval (i.e. has an octave
         /// offset of 0).
         /// </summary>
-        public bool IsSimple => Octave == 0;
+        public bool IsSimple => Octaves == 0;
 
         /// <summary>
         /// Gets whether or not this interval represents a compound interval (i.e. has an octave
         /// offset that is greater than 0).
         /// </summary>
-        public bool IsCompound => Octave != 0;
+        public bool IsCompound => Octaves != 0;
 
         /// <summary>
         /// The number of octaves offset from the base simple interval.
         /// </summary>
-        public int Octave
+        public int Octaves
         {
             get => _octave;
-            init => _octave = IntChecks.EnsurePropNonNegative(value, nameof(Octave));
+            init => _octave = IntChecks.EnsurePropNonNegative(value, nameof(Octaves));
         }
         private readonly int _octave = IntChecks.EnsureArgNonNegative(Octave, nameof(Octave));
 
@@ -43,7 +43,7 @@ namespace REMuns.Music.Intervals
         /// </exception>
         public Interval WithOctavesAdded(int octaves)
         {
-            return this with { Octave = Octave + octaves };
+            return this with { Octaves = Octaves + octaves };
         }
 
         /// <summary>

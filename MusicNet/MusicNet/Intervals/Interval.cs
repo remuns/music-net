@@ -11,6 +11,16 @@ namespace REMuns.Music.Intervals
     public sealed record Interval(SimpleInterval Base, int Octaves = 0)
     {
         /// <summary>
+        /// Represents a perfect unison.
+        /// </summary>
+        public static readonly Interval PerfectUnison = new(SimpleInterval.Perfect().Unison(), 0);
+
+        /// <summary>
+        /// Represents a perfect octave.
+        /// </summary>
+        public static readonly Interval PerfectOctave = new(SimpleInterval.Perfect().Unison(), 1);
+
+        /// <summary>
         /// Gets whether or not this interval represents a simple interval (i.e. has an octave
         /// offset of 0).
         /// </summary>

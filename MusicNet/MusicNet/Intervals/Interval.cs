@@ -61,5 +61,13 @@ namespace REMuns.Music.Intervals
         /// </summary>
         /// <param name="s"></param>
         public static implicit operator Interval(SimpleInterval s) => new(s, 0);
+
+        public static Interval operator +(Interval lhs, Interval rhs)
+        {
+            var overflows = lhs.Base.Number + rhs.Base.Number - 2 >= 7;
+            var octaves = lhs.Octaves + rhs.Octaves;
+            if (overflows) octaves++;
+            return new Interval(lhs.Base + rhs.Base, octaves);
+        }
     }
 }

@@ -28,5 +28,29 @@ namespace REMuns.Music.Test.Intervals
             // Should fail because octave count would be negative
             Assert.ThrowsException<InvalidOperationException>(() => i.WithOctavesAdded(-3));
         }
+
+        /// <summary>
+        /// Tests addition of two intervals.
+        /// </summary>
+        [TestMethod]
+        public void TestAddition()
+        {
+            Assert.AreEqual(
+                new Interval(SimpleInterval.Perfect().Fourth(), 2),
+                new Interval(SimpleInterval.Major().Second(), 1)
+                    + new Interval(SimpleInterval.Minor().Third(), 1));
+
+            // Overflows
+            Assert.AreEqual(
+                Interval.PerfectOctave,
+                new Interval(SimpleInterval.Major().Sixth())
+                    + new Interval(SimpleInterval.Minor().Third()));
+
+            // Overflows
+            Assert.AreEqual(
+                new Interval(SimpleInterval.Major().Second(), 1),
+                new Interval(SimpleInterval.Perfect().Fifth())
+                    + new Interval(SimpleInterval.Perfect().Fifth()));
+        }
     }
 }

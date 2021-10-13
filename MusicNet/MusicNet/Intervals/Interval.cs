@@ -45,5 +45,11 @@ namespace REMuns.Music.Intervals
         {
             return this with { Octave = Octave + octaves };
         }
+
+        /// <summary>
+        /// Implicitly converts a <see cref="SimpleInterval"/> to an <see cref="Interval"/>.
+        /// </summary>
+        /// <param name="s"></param>
+        public static implicit operator Interval(SimpleInterval s) => new(s, 0);
     }
 }

@@ -76,5 +76,68 @@ namespace REMuns.Music.Scales
             StandardModeType.Locrian => -3,
         };
 #pragma warning restore CS8524
+
+        /// <summary>
+        /// Gets the series of seven simple intervals comprising the current standard mode type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="type"/> was not a defined value of type <see cref="StandardModeType"/>.
+        /// </exception>
+        public static IEnumerable<SimpleInterval> Intervals(this StandardModeType type)
+        {
+            // Ensure the mode type is named so that we can use catch-all switch expressions
+            EnumChecks.EnsureArgNamed(type, nameof(type));
+
+            // Unison
+            yield return SimpleInterval.Perfect().Unison();
+
+            // Second
+            yield return type switch
+            {
+                StandardModeType.Phrygian or StandardModeType.Locrian
+                    => SimpleInterval.Minor().Second(),
+                _ => SimpleInterval.Major().Second(),
+            };
+
+            // Third
+            yield return type switch
+            {
+                StandardModeType.Lydian or StandardModeType.Ionian or StandardModeType.Mixolydian
+                    => SimpleInterval.Major().Third(),
+                _ => SimpleInterval.Minor().Third(),
+            };
+
+            // Fourth
+            yield return type switch
+            {
+                StandardModeType.Lydian => SimpleInterval.Augmented().Fourth(),
+                _ => SimpleInterval.Perfect().Fourth(),
+            };
+
+            // Fifth
+            yield return type switch
+            {
+                StandardModeType.Locrian => SimpleInterval.Diminished().Fifth(),
+                _ => SimpleInterval.Perfect().Fifth(),
+            };
+
+            // Sixth
+            yield return type switch
+            {
+                StandardModeType.Aeolian or StandardModeType.Phrygian or StandardModeType.Locrian
+                    => SimpleInterval.Minor().Sixth(),
+                _ => SimpleInterval.Major().Sixth(),
+            };
+
+            // Seventh
+            yield return type switch
+            {
+                StandardModeType.Lydian or StandardModeType.Ionian
+                    => SimpleInterval.Major().Seventh(),
+                _ => SimpleInterval.Minor().Seventh(),
+            };
+        }
     }
 }

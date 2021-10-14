@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using REMuns.Music.Intervals;
+using REMuns.Music.Notes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,23 @@ namespace REMuns.Music.Test
             Assert.AreEqual(1, CircleOfFifths.CompareSimpleIntervals(
                 SimpleInterval.Major().Sixth(),
                 SimpleInterval.Perfect().Fifth()));
+        }
+
+        /// <summary>
+        /// Tests comparisons between note classes.
+        /// </summary>
+        [TestMethod]
+        public void TestNoteClassComparison()
+        {
+            // Note classes should compare equal to themselves
+            Assert.AreEqual(0, CircleOfFifths.CompareNoteClasses(
+                NoteClass.A(), NoteClass.A()));
+
+            Assert.AreEqual(1, CircleOfFifths.CompareNoteClasses(
+                NoteClass.F(), NoteClass.D().Flat()));
+
+            Assert.AreEqual(-1, CircleOfFifths.CompareNoteClasses(
+                NoteClass.B().Flat(), NoteClass.F()));
         }
     }
 }

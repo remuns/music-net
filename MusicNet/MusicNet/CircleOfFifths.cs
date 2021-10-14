@@ -21,6 +21,16 @@ namespace REMuns.Music
         public static int CompareSimpleIntervals(SimpleInterval lhs, SimpleInterval rhs)
             => IntValue(lhs).CompareTo(IntValue(rhs));
 
+        /// <summary>
+        /// Compares the two <see cref="NoteClass"/> values supplied according to their relative
+        /// position on the circle of fifths.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static int CompareNoteClasses(NoteClass lhs, NoteClass rhs)
+            => IntValue(lhs).CompareTo(IntValue(rhs));
+
         internal static int IntValue(SimpleInterval interval)
         {
             // Get the distance of the interval from perfect or major along the circle of

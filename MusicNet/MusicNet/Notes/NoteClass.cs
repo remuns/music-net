@@ -58,6 +58,17 @@ namespace REMuns.Music.Notes
                 CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
 
         /// <summary>
+        /// Finds the difference between the note classes passed in as a
+        /// <see cref="SimpleInterval"/>, ignoring octaves.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static SimpleInterval operator -(NoteClass lhs, NoteClass rhs)
+            => CircleOfFifths.SimpleIntervalFromIntValue(
+                CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
+
+        /// <summary>
         /// Gets a builder object that can be used to construct an 'A' note with a
         /// given accidental.
         /// </summary>

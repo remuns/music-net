@@ -67,5 +67,32 @@ namespace REMuns.Music.Test.Notes
                 NoteClass.G().Sharp(2),
                 NoteClass.F().Flat() - SimpleInterval.Diminished(3).Seventh());
         }
+
+        /// <summary>
+        /// Tests finding the simple interval difference between two note classes.
+        /// </summary>
+        [TestMethod]
+        public void TestDifference()
+        {
+            Assert.AreEqual(
+                SimpleInterval.Diminished().Fourth(),
+                NoteClass.B().Flat() - NoteClass.F().Sharp());
+
+            Assert.AreEqual(
+                SimpleInterval.Major().Seventh(),
+                NoteClass.B().Natural() - NoteClass.C().Natural());
+
+            Assert.AreEqual(
+                SimpleInterval.Perfect().Unison(),
+                NoteClass.D().Natural() - NoteClass.D().Natural());
+
+            Assert.AreEqual(
+                SimpleInterval.Augmented().Fourth(),
+                NoteClass.F().Sharp() - NoteClass.C().Natural());
+
+            Assert.AreEqual(
+                SimpleInterval.Diminished(2).Fifth(),
+                NoteClass.G().Flat(2) - NoteClass.C().Natural());
+        }
     }
 }

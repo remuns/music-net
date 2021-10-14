@@ -15,34 +15,16 @@ namespace REMuns.Music.Test
     public class CircleOfFifthsTest
     {
         /// <summary>
-        /// Tests that intervals compare as equal to themselves.
+        /// Tests comparisons between simple intervals.
         /// </summary>
         [TestMethod]
-        public void TestSimpleIntervalComparison_Trivial()
+        public void TestSimpleIntervalComparison()
         {
+            // Intervals should compare as equal to themselves
             Assert.AreEqual(0, CircleOfFifths.CompareSimpleIntervals(
                 SimpleInterval.Major().Second(),
                 SimpleInterval.Major().Second()));
 
-            Assert.AreEqual(0, CircleOfFifths.CompareSimpleIntervals(
-                SimpleInterval.Minor().Sixth(),
-                SimpleInterval.Minor().Sixth()));
-
-            Assert.AreEqual(0, CircleOfFifths.CompareSimpleIntervals(
-                SimpleInterval.Augmented(4).Third(),
-                SimpleInterval.Augmented(4).Third()));
-
-            Assert.AreEqual(0, CircleOfFifths.CompareSimpleIntervals(
-                SimpleInterval.Diminished(2).Fourth(),
-                SimpleInterval.Diminished(2).Fourth()));
-        }
-
-        /// <summary>
-        /// Tests comparisons between intervals that are not the same.
-        /// </summary>
-        [TestMethod]
-        public void TestSimpleIntervalComparison_NonTrivial()
-        {
             Assert.AreEqual(-1, CircleOfFifths.CompareSimpleIntervals(
                 SimpleInterval.Minor().Second(),
                 SimpleInterval.Perfect().Unison()));

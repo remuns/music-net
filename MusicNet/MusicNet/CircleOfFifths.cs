@@ -1,4 +1,5 @@
 ﻿using REMuns.Music.Intervals;
+using REMuns.Music.Notes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -137,6 +138,60 @@ namespace REMuns.Music
 
                     return new NPSimpleInterval(npQuality, npNumberName);
             }
+        }
+
+        internal static int IntValue(NoteClass nc)
+        {
+#pragma warning disable CS8524 // NoteClass does not allow unnamed enum values
+            var letterIntValue = nc.Letter switch
+            {
+                NoteLetter.A => 3,
+                NoteLetter.B => 5,
+                NoteLetter.C => 0,
+                NoteLetter.D => 2,
+                NoteLetter.E => 4,
+                NoteLetter.F => -1,
+                NoteLetter.G => 1,
+            };
+#pragma warning restore CS8524
+
+            return letterIntValue + nc.Accidental * 7;
+        }
+
+        internal static NoteClass NoteClassFromIntValue(int value)
+        {
+            var letterIntValue = value % 7;
+
+            // Need to ensure this value is positive
+            if (letterIntValue < 0) letterIntValue += 7;
+
+            // Need to treat an F natural as negative
+            if (letterIntValue == 6) letterIntValue = -1;
+
+            // Need to treat the range [-1, 5] rather than the typical range of [0, 6]
+            // used for modulo 7 so that an F natural is negative, but "natural" is always
+            // treated as 0
+            value++;
+
+            // Need to ensure that the range [-7, -1] yields -1 instead of the range [-6, 0]
+            // yielding 0, and so on and so forth
+            var accidentalIntValue = value < 0 ? (value + 1) / 7 - 1 : value / 7;
+
+            // Construct the note letter from the value computed
+#pragma warning disable CS8509 // Already know the value is one of the cases handled
+            var letter = letterIntValue switch
+            {
+                -1 => NoteLetter.F,
+                0 => NoteLetter.C,
+                1 => NoteLetter.G,
+                2 => NoteLetter.D,
+                3 => NoteLetter.A,
+                4 => NoteLetter.E,
+                5 => NoteLetter.B,
+            };
+#pragma warning restore CS8509
+
+            return new(letter, accidentalIntValue);
         }
     }
 }

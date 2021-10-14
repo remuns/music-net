@@ -1,4 +1,5 @@
 ﻿using REMuns.Music.Internal;
+using REMuns.Music.Intervals;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,6 +35,27 @@ namespace REMuns.Music.Notes
             init => _letter = EnumChecks.EnsureArgNamed(Letter, nameof(Letter));
         }
         private readonly NoteLetter _letter = EnumChecks.EnsureArgNamed(Letter, nameof(Letter));
+
+        /// <summary>
+        /// Adds the simple interval passed in to the note class passed in, ignoring octaves.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static NoteClass operator +(NoteClass lhs, SimpleInterval rhs)
+            => CircleOfFifths.NoteClassFromIntValue(
+                CircleOfFifths.IntValue(lhs) + CircleOfFifths.IntValue(rhs));
+
+        /// <summary>
+        /// Subtracts the simple interval passed in from the note class passed in,
+        /// ignoring octaves.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static NoteClass operator -(NoteClass lhs, SimpleInterval rhs)
+            => CircleOfFifths.NoteClassFromIntValue(
+                CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
 
         /// <summary>
         /// Gets a builder object that can be used to construct an 'A' note with a

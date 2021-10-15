@@ -1,5 +1,6 @@
 ﻿using REMuns.Music.Internal;
 using REMuns.Music.Intervals;
+using REMuns.Music.Scales;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -67,6 +68,48 @@ namespace REMuns.Music.Notes
         public static SimpleInterval operator -(NoteClass lhs, NoteClass rhs)
             => CircleOfFifths.SimpleIntervalFromIntValue(
                 CircleOfFifths.IntValue(lhs) - CircleOfFifths.IntValue(rhs));
+
+        /// <summary>
+        /// Constructs a new Lydian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Lydian() => new(this, StandardModeType.Lydian);
+
+        /// <summary>
+        /// Constructs a new Ionian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Ionian() => new(this, StandardModeType.Ionian);
+
+        /// <summary>
+        /// Constructs a new Mixolydian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Mixolydian() => new(this, StandardModeType.Mixolydian);
+
+        /// <summary>
+        /// Constructs a new Dorian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Dorian() => new(this, StandardModeType.Dorian);
+
+        /// <summary>
+        /// Constructs a new Aeolian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Aeolian() => new(this, StandardModeType.Aeolian);
+
+        /// <summary>
+        /// Constructs a new Phrygian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Phrygian() => new(this, StandardModeType.Phrygian);
+
+        /// <summary>
+        /// Constructs a new Locrian mode with the current instance as the root.
+        /// </summary>
+        /// <returns></returns>
+        public StandardMode Locrian() => new(this, StandardModeType.Locrian);
 
         /// <summary>
         /// Gets a builder object that can be used to construct an 'A' note with a

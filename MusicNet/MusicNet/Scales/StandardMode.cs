@@ -10,7 +10,7 @@ namespace REMuns.Music.Scales
     /// <summary>
     /// Represents a standard mode based on a given note class root.
     /// </summary>
-    public sealed record StandardMode(StandardModeType Type, NoteClass Root)
+    public sealed record StandardMode(NoteClass Root, StandardModeType Type)
     {
         /// <summary>
         /// The type of mode this object represents.
@@ -26,5 +26,13 @@ namespace REMuns.Music.Scales
         /// Gets a collection of the notes this mode is comprised of.
         /// </summary>
         public IEnumerable<NoteClass> Notes => Type.Intervals().Select(i => Root + i);
+
+        /// <summary>
+        /// Determines if this mode is enharmonically equivalent to another.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool IsEnharmonicallyEquivalent(StandardMode other)
+            => CircleOfFifths.CompareStandardModes(this, other) == 0;
     }
 }

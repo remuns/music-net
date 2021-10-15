@@ -68,5 +68,29 @@ namespace REMuns.Music.Test
             Assert.AreEqual(-1, CircleOfFifths.CompareNoteClasses(
                 NoteClass.B().Flat(), NoteClass.F()));
         }
+
+        /// <summary>
+        /// Tests comparisons between standard modes.
+        /// </summary>
+        [TestMethod]
+        public void TestStandardModeComparison()
+        {
+            // Modes that are equal should compare as equal
+            Assert.AreEqual(0, CircleOfFifths.CompareStandardModes(
+                NoteClass.A().Natural().Lydian(), NoteClass.A().Natural().Lydian()));
+
+            // Modes that are enharmonically equivalent should compare as equal
+            Assert.AreEqual(0, CircleOfFifths.CompareStandardModes(
+                NoteClass.A().Natural().Lydian(), NoteClass.B().Natural().Mixolydian()));
+
+            Assert.AreEqual(-1, CircleOfFifths.CompareStandardModes(
+                NoteClass.C().Natural().Ionian(), NoteClass.C().Natural().Lydian()));
+
+            Assert.AreEqual(1, CircleOfFifths.CompareStandardModes(
+                NoteClass.D().Natural().Ionian(), NoteClass.C().Natural().Ionian()));
+
+            Assert.AreEqual(1, CircleOfFifths.CompareStandardModes(
+                NoteClass.F().Sharp().Locrian(), NoteClass.D().Natural().Dorian()));
+        }
     }
 }

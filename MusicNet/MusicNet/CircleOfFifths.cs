@@ -1,5 +1,6 @@
 ﻿using REMuns.Music.Intervals;
 using REMuns.Music.Notes;
+using REMuns.Music.Scales;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,6 +31,19 @@ namespace REMuns.Music
         /// <returns></returns>
         public static int CompareNoteClasses(NoteClass lhs, NoteClass rhs)
             => IntValue(lhs).CompareTo(IntValue(rhs));
+
+        /// <summary>
+        /// Compares the two <see cref="StandardMode"/> values supplied according to their relative
+        /// position on the circle of fifths.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static int CompareStandardModes(StandardMode lhs, StandardMode rhs)
+            => IntValue(lhs).CompareTo(IntValue(rhs));
+
+        private static int IntValue(StandardMode mode)
+            => IntValue(mode.Root) + mode.Type.MajorMinorIndex();
 
         internal static int IntValue(SimpleInterval interval)
         {

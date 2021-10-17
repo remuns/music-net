@@ -33,6 +33,11 @@ namespace REMuns.Music.Intervals
         public bool IsCompound => Octaves != 0;
 
         /// <summary>
+        /// Gets the number of this interval.
+        /// </summary>
+        public int Number => Base.Number + Octaves * 7;
+
+        /// <summary>
         /// The number of octaves offset from the base simple interval.
         /// </summary>
         public int Octaves

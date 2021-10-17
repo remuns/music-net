@@ -56,6 +56,24 @@ namespace REMuns.Music.Intervals
         }
 
         /// <summary>
+        /// Gets the inverse of the directed interval passed in.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static DirectedInterval operator -(DirectedInterval i)
+        {
+            if (i.Sign == 0)
+            {
+                // Invert unisons to yield the negative
+                return new(i.Value with { Base = i.Value.Base.Inverted() }, 0);
+            }
+            else
+            {
+                return new(i.Value, -i.Sign);
+            }
+        }
+
+        /// <summary>
         /// Determines if the two <see cref="DirectedInterval"/> instances are equal.
         /// </summary>
         /// <param name="lhs"></param>

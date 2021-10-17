@@ -1,4 +1,5 @@
-﻿using System;
+﻿using REMuns.Music.Intervals;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -50,6 +51,42 @@ namespace REMuns.Music.Notes
 
                 return new(Class: pitchClass, Octave: Octave + octaveAddition);
             }
+        }
+
+        /// <summary>
+        /// Adds the interval passed in to the note passed in.
+        /// </summary>
+        /// <param name="note"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        public static Note operator +(Note note, Interval interval)
+        {
+            // Determine if there is an overflow
+            var rawLetterCount = note.Class.Letter.OctaveIndex() + interval.Base.Number;
+            var octaveOverflow = rawLetterCount / 7;
+            return new Note(
+                Class: note.Class + interval.Base,
+                Octave: note.Octave + interval.Octaves + octaveOverflow);
+        }
+
+        /// <summary>
+        /// Subtracts the interval passed in from the note passed in.
+        /// </summary>
+        /// <param name="note"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        public static Note operator -(Note note, Interval interval)
+        {
+            // Determine if there is an overflow
+            var rawLetterCount = note.Class.Letter.OctaveIndex() - interval.Base.Number;
+            var octaveOverflow = rawLetterCount / 7;
+            
+            // Fix up the octave overflow so this is the floor division
+            if (rawLetterCount < 0) octaveOverflow--;
+
+            return new Note(
+                Class: note.Class - interval.Base,
+                Octave: note.Octave - interval.Octaves + octaveOverflow);
         }
     }
 }

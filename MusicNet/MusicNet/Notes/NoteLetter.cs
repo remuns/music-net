@@ -1,4 +1,5 @@
-﻿using System;
+﻿using REMuns.Music.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -43,5 +44,28 @@ namespace REMuns.Music.Notes
         /// Represents a 'G' note.
         /// </summary>
         G,
+    }
+
+    /// <summary>
+    /// Static functionality for the <see cref="NoteLetter"/> enum.
+    /// </summary>
+    public static class NoteLetters
+    {
+        /// <summary>
+        /// Gets the index of this note letter in an octave relative to 'C'.
+        /// </summary>
+        /// <param name="letter"></param>
+        /// <returns></returns>
+        public static int OctaveIndex(this NoteLetter letter)
+            => EnumChecks.EnsureArgNamed(letter, nameof(letter)) switch
+            {
+                NoteLetter.A => 5,
+                NoteLetter.B => 6,
+                NoteLetter.C => 0,
+                NoteLetter.D => 1,
+                NoteLetter.E => 2,
+                NoteLetter.F => 3,
+                NoteLetter.G => 4,
+            };
     }
 }

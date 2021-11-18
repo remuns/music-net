@@ -54,6 +54,53 @@ namespace REMuns.Music.Notes
         }
 
         /// <summary>
+        /// Finds the difference between the given notes.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static DirectedInterval operator -(Note lhs, Note rhs)
+        {
+            var octaveDiff = lhs.Octave - rhs.Octave;
+
+            int lhsOctaveIndex = lhs.Class.Letter.OctaveIndex(),
+                rhsOctaveIndex = rhs.Class.Letter.OctaveIndex();
+
+            // Whether or not the simple interval created by the two note classes is in the
+            // wrong direction
+            var mismatch = octaveDiff switch
+            {
+                < 0 => lhsOctaveIndex > rhsOctaveIndex,
+                _ => lhsOctaveIndex < rhsOctaveIndex,
+            };
+
+            // Final octave for the directed interval
+            var octave = Math.Abs(octaveDiff) - (mismatch ? 1 : 0);
+
+            // Simple interval difference between note classes
+            var sInterval = lhs.Class - rhs.Class;
+            if (octaveDiff < 0)
+            {
+                // Invert the interval since we are going in the other direction
+                sInterval = sInterval.Inverted();
+            }
+
+            // Sign of resulting interval
+            var sign = octaveDiff switch
+            {
+                < 0 => -1,
+                > 0 => 1,
+                0 => Math.Sign(lhsOctaveIndex.CompareTo(rhsOctaveIndex)),
+            };
+
+            return sign switch
+            {
+                < 0 => DirectedInterval.Down(new(sInterval, octave)),
+                _ => DirectedInterval.Up(new(sInterval, octave)),
+            };
+        }
+
+        /// <summary>
         /// Adds the interval passed in to the note passed in.
         /// </summary>
         /// <param name="note"></param>

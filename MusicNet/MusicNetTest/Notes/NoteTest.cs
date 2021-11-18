@@ -33,7 +33,7 @@ namespace REMuns.Music.Test.Notes
         /// Tests addition of an interval to a note.
         /// </summary>
         [TestMethod]
-        public void TestAddition()
+        public void TestIntervalAddition()
         {
             Assert.AreEqual(
                 new Note(NoteClass.A(), 3),
@@ -49,7 +49,7 @@ namespace REMuns.Music.Test.Notes
         /// Tests subtraction of an interval from a note.
         /// </summary>
         [TestMethod]
-        public void TestSubtraction()
+        public void TestIntervalSubtraction()
         {
             Assert.AreEqual(
                 new Note(NoteClass.F(), 3),
@@ -59,6 +59,33 @@ namespace REMuns.Music.Test.Notes
             Assert.AreEqual(
                 new Note(NoteClass.A().Flat(), 3),
                 new Note(NoteClass.D(), 5) - new Interval(SimpleInterval.Augmented().Fourth(), 1));
+        }
+
+        /// <summary>
+        /// Tests difference between two notes.
+        /// </summary>
+        [TestMethod]
+        public void TestNoteDifference()
+        {
+            Assert.AreEqual(
+                DirectedInterval.Down(SimpleInterval.Minor().Third()),
+                new Note(NoteClass.A(), 4) - new Note(NoteClass.C(), 5));
+
+            Assert.AreEqual(
+                DirectedInterval.Down(new Interval(SimpleInterval.Major().Sixth(), 1)),
+                new Note(NoteClass.C(), 4) - new Note(NoteClass.A(), 5));
+
+            Assert.AreEqual(
+                DirectedInterval.Up(new Interval(SimpleInterval.Perfect().Fifth(), 1)),
+                new Note(NoteClass.B(), 5) - new Note(NoteClass.E(), 4));
+
+            Assert.AreEqual(
+                DirectedInterval.Up(SimpleInterval.Perfect().Fourth()),
+                new Note(NoteClass.E(), 5) - new Note(NoteClass.B(), 4));
+
+            Assert.AreEqual(
+                DirectedInterval.Up(SimpleInterval.Augmented().Unison()),
+                new Note(NoteClass.C(), 3) - new Note(NoteClass.C().Flat(), 3));
         }
     }
 }

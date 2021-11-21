@@ -35,6 +35,9 @@ namespace REMuns.Music.Intervals
         }
         private readonly PSimpleIntervalNumberName _numberName
             = EnumChecks.EnsureArgNamed(NumberName, nameof(NumberName));
+
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString() => $"SimpleInterval({Quality}, {NumberName})";
     }
 
     /// <summary>
@@ -67,6 +70,9 @@ namespace REMuns.Music.Intervals
         }
         private readonly NPSimpleIntervalNumberName _numberName
             = EnumChecks.EnsureArgNamed(NumberName, nameof(NumberName));
+
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString() => $"SimpleInterval({Quality}, {NumberName})";
     }
 
     /// <summary>

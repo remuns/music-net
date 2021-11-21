@@ -74,5 +74,18 @@ namespace REMuns.Music.Intervals
             if (overflows) octaves++;
             return new Interval(lhs.Base + rhs.Base, octaves);
         }
+
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString()
+        {
+            if (Octaves == 0)
+            {
+                return $"{nameof(Interval)}({Base})";
+            }
+            else
+            {
+                return $"{nameof(Interval)}({nameof(Base)}: {Base}, {nameof(Octaves)}: {Octaves})";
+            }
+        }
     }
 }

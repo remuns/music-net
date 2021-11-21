@@ -159,5 +159,28 @@ namespace REMuns.Music.Notes
         /// </summary>
         /// <returns></returns>
         public static NoteClassBuilder G() => new() { Letter = NoteLetter.G };
+
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString()
+        {
+            if (Accidental == 0)
+            {
+                return $"{nameof(NoteClass)}({Letter})";
+            }
+            else
+            {
+#pragma warning disable CS8509 // The 0 case is already covered
+                var accidentalString = Accidental switch
+#pragma warning restore CS8509
+                {
+                    1 => "Sharp",
+                    -1 => "Flat",
+                    > 0 => $"Sharp({Accidental})",
+                    < 0 => $"Flat({-Accidental})",
+                };
+
+                return $"{nameof(NoteClass)}({Letter}, {accidentalString})";
+            }
+        }
     }
 }

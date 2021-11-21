@@ -135,5 +135,9 @@ namespace REMuns.Music.Notes
                 Class: note.Class - interval.Base,
                 Octave: note.Octave - interval.Octaves + octaveOverflow);
         }
+
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString()
+            => $"{nameof(Note)}({Class}, {nameof(Octave)}: {Octave})";
     }
 }

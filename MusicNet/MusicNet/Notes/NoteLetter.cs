@@ -8,7 +8,7 @@ namespace REMuns.Music.Notes
     /// <summary>
     /// Represents the letter name of a note.
     /// </summary>
-    public enum NoteLetter
+    public enum NoteLetter : byte
     {
         /// <summary>
         /// Represents an 'A' note.

@@ -15,7 +15,7 @@ namespace REMuns.Music.Notes
     /// The octave of the note, corresponding to the standard music theory notation octave
     /// (with A4 having a frequency of 440 Hz).
     /// </param>
-    public sealed record Note(NoteClass Class, int Octave)
+    public readonly record struct Note(NoteClass Class, int Octave)
     {
         /// <summary>
         /// Gets info about the pitch this note represents.

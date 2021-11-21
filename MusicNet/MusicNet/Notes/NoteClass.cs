@@ -10,7 +10,7 @@ namespace REMuns.Music.Notes
     /// <summary>
     /// Represents a class of notes, ignoring octaves.
     /// </summary>
-    public sealed record NoteClass(NoteLetter Letter, int Accidental = 0)
+    public readonly record struct NoteClass(NoteLetter Letter, int Accidental = 0)
     {
         /// <summary>
         /// Gets whether or not this note is sharp.

@@ -61,7 +61,7 @@ namespace REMuns.Music.Chords
         /// <summary>
         /// Gets the root of the chord schema.
         /// </summary>
-        public SimpleInterval Root => Intervals.ElementAt(Inversion);
+        public SimpleInterval Root => Intervals.ElementAt((IntervalCount - Inversion) % IntervalCount);
 
         /// <summary>
         /// Constructs a new instance of the <see cref="InversionChordSchema"/> class with the root

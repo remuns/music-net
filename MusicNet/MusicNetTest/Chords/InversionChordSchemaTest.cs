@@ -33,5 +33,18 @@ namespace REMuns.Music.Test.Chords
                     SimpleInterval.Major().Sixth()
                 }.SequenceEqual(triad64.Intervals));
         }
+
+        /// <summary>
+        /// Ensures the root interval of an inverted chord is the correct value.
+        /// </summary>
+        [TestMethod]
+        public void TestRoot()
+        {
+            var rootTriad = new InversionChordSchema(TriadSchema.Major, 0);
+            Assert.AreEqual(SimpleInterval.Perfect().Unison(), rootTriad.Root);
+
+            var triad6 = new InversionChordSchema(TriadSchema.Minor, 2);
+            Assert.AreEqual(SimpleInterval.Perfect().Fourth(), triad6.Root);
+        }
     }
 }
